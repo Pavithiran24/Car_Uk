@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Car, Phone } from "lucide-react";
 
@@ -32,14 +32,20 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
-              <Link key={link.path} to={link.path}>
-                <Button
-                  variant="ghost"
-                  className="text-foreground hover:bg-accent/20 hover:text-foreground font-medium transition-colors"
-                >
-                  {link.name}
-                </Button>
-              </Link>
+              <NavLink key={link.path} to={link.path} end={link.path === '/'}>
+                {({ isActive }) => (
+                  <Button
+                    variant="ghost"
+                    className={`text-foreground font-medium transition-colors ${
+                      isActive
+                        ? 'bg-accent/20 text-foreground rounded-lg'
+                        : 'hover:bg-accent/20 hover:text-foreground'
+                    }`}
+                  >
+                    {link.name}
+                  </Button>
+                )}
+              </NavLink>
             ))}
             <Button variant="default" className="ml-4 bg-accent hover:bg-accent/90 text-accent-foreground shadow-accent">
               <Phone className="h-4 w-4 mr-2" />
@@ -61,14 +67,22 @@ const Navbar = () => {
           <div className="md:hidden py-4 border-t border-border animate-in slide-in-from-top-2 duration-200">
             <div className="flex flex-col space-y-2">
               {navLinks.map((link) => (
-                <Link
+                <NavLink
                   key={link.path}
                   to={link.path}
+                  end={link.path === '/'}
                   onClick={() => setIsOpen(false)}
-                  className="px-4 py-3 rounded-lg hover:bg-muted transition-colors font-medium"
                 >
-                  {link.name}
-                </Link>
+                  {({ isActive }) => (
+                    <div
+                      className={`px-4 py-3 rounded-lg transition-colors font-medium ${
+                        isActive ? 'bg-accent/20 text-foreground' : 'hover:bg-muted'
+                      }`}
+                    >
+                      {link.name}
+                    </div>
+                  )}
+                </NavLink>
               ))}
               <Button variant="default" className="mx-4 mt-2 bg-accent hover:bg-accent/90 text-accent-foreground">
                 <Phone className="h-4 w-4 mr-2" />
