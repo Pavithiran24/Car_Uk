@@ -6,10 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, SlidersHorizontal } from "lucide-react";
 
+import vehicles from "@/lib/vehicles"; // ✅ FIXED (moved out of component)
+
 const Cars = () => {
   const [searchTerm, setSearchTerm] = useState("");
-
-import vehicles from "@/lib/vehicles";
 
   return (
     <div className="min-h-screen py-12">
