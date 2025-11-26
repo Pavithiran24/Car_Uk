@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import vehicles from "@/lib/vehicles";
+import vans from "@/lib/vans";
 
-const CarDetails: React.FC = () => {
+const VanDetails: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -12,14 +12,14 @@ const CarDetails: React.FC = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  const car = vehicles.find((v) => String(v.id) === String(id));
+  const van = vans.find((v) => String(v.id) === String(id));
 
-  if (!car) {
+  if (!van) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-lg">Car not found.</p>
-          <Button className="mt-4" onClick={() => navigate('/cars')}>
+          <p className="text-lg">Van not found.</p>
+          <Button className="mt-4" onClick={() => navigate('/vans')}>
             Back to listings
           </Button>
         </div>
@@ -45,22 +45,22 @@ const CarDetails: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
               <img
-                src={car.image}
-                alt={car.name}
+                src={van.image}
+                alt={van.name}
                 onError={(e) => (e.currentTarget.src = '/car.png')}
                 className="w-full h-96 object-cover rounded-lg"
               />
             </div>
             <div>
-              <h1 className="text-3xl font-bold mb-2">{car.name}</h1>
-              <p className="text-accent text-2xl font-bold mb-4">{car.price}</p>
+              <h1 className="text-3xl font-bold mb-2">{van.name}</h1>
+              <p className="text-accent text-2xl font-bold mb-4">{van.price}</p>
               <ul className="space-y-2 mb-4 text-sm text-muted-foreground">
-                <li><strong>Year:</strong> {car.year}</li>
-                <li><strong>Mileage:</strong> {car.mileage}</li>
-                <li><strong>Fuel:</strong> {car.fuel}</li>
-                <li><strong>Transmission:</strong> {car.transmission}</li>
+                <li><strong>Year:</strong> {van.year}</li>
+                <li><strong>Mileage:</strong> {van.mileage}</li>
+                <li><strong>Fuel:</strong> {van.fuel}</li>
+                <li><strong>Payload:</strong> {van.payload}</li>
               </ul>
-              <p className="text-sm text-primary-foreground/80 mb-6">{car.description}</p>
+              <p className="text-sm text-primary-foreground/80 mb-6">{van.description}</p>
 
               <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
                 Contact Seller
@@ -73,4 +73,4 @@ const CarDetails: React.FC = () => {
   );
 };
 
-export default CarDetails;
+export default VanDetails;

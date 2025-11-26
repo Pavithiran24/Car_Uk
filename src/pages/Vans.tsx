@@ -1,75 +1,15 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, SlidersHorizontal } from "lucide-react";
 
+import vans from "@/lib/vans"; // ✅ FIXED
+
 const Vans = () => {
   const [searchTerm, setSearchTerm] = useState("");
-
-  const vans = [
-    {
-      id: 1,
-      name: "Mercedes-Benz Sprinter",
-      year: 2020,
-      price: "£32,450",
-      mileage: "28,000 mi",
-      fuel: "Diesel",
-      payload: "1,400 kg",
-      image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&h=500&fit=crop",
-    },
-    {
-      id: 2,
-      name: "Ford Transit",
-      year: 2021,
-      price: "£28,995",
-      mileage: "18,000 mi",
-      fuel: "Diesel",
-      payload: "1,200 kg",
-      image: "https://images.unsplash.com/photo-1622689837986-c3a7a9a33ab4?w=800&h=500&fit=crop",
-    },
-    {
-      id: 3,
-      name: "Volkswagen Transporter",
-      year: 2022,
-      price: "£35,750",
-      mileage: "12,000 mi",
-      fuel: "Diesel",
-      payload: "1,100 kg",
-      image: "https://images.unsplash.com/photo-1506421819509-afcc47baa3b4?w=800&h=500&fit=crop",
-    },
-    {
-      id: 4,
-      name: "Renault Master",
-      year: 2020,
-      price: "£24,995",
-      mileage: "35,000 mi",
-      fuel: "Diesel",
-      payload: "1,500 kg",
-      image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=500&fit=crop",
-    },
-    {
-      id: 5,
-      name: "Peugeot Boxer",
-      year: 2021,
-      price: "£27,500",
-      mileage: "22,000 mi",
-      fuel: "Diesel",
-      payload: "1,300 kg",
-      image: "https://images.unsplash.com/photo-1582638957499-a38a15f62bf4?w=800&h=500&fit=crop",
-    },
-    {
-      id: 6,
-      name: "Citroen Relay",
-      year: 2021,
-      price: "£26,995",
-      mileage: "25,000 mi",
-      fuel: "Diesel",
-      payload: "1,350 kg",
-      image: "https://images.unsplash.com/photo-1527847263472-aa5338d178b8?w=800&h=500&fit=crop",
-    },
-  ];
 
   return (
     <div className="min-h-screen py-12">
@@ -162,9 +102,11 @@ const Vans = () => {
                   <span>Fuel: {van.fuel}</span>
                   <span>Payload: {van.payload}</span>
                 </div>
-                <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                  View Details
-                </Button>
+                <Link to={`/vans/${van.id}`}>
+                  <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                    View Details
+                  </Button>
+                </Link>
               </div>
             </Card>
           ))}
