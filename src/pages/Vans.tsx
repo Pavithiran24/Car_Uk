@@ -149,6 +149,7 @@ const Vans = () => {
                 <img
                   src={van.image}
                   alt={van.name}
+                  onError={(e) => (e.currentTarget.src = '/car.png')}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>

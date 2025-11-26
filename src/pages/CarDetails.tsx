@@ -31,7 +31,12 @@ const CarDetails: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="md:col-span-2">
-            <img src={car.image} alt={car.name} className="w-full h-96 object-cover rounded-lg" />
+            <img
+              src={car.image}
+              alt={car.name}
+              onError={(e) => (e.currentTarget.src = '/car.png')}
+              className="w-full h-96 object-cover rounded-lg"
+            />
           </div>
           <div>
             <h1 className="text-3xl font-bold mb-2">{car.name}</h1>
