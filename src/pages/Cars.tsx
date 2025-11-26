@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,68 +9,7 @@ import { Search, SlidersHorizontal } from "lucide-react";
 const Cars = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const vehicles = [
-    {
-      id: 1,
-      name: "BMW 3 Series",
-      year: 2021,
-      price: "£28,995",
-      mileage: "15,000 mi",
-      fuel: "Petrol",
-      transmission: "Automatic",
-      image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=500&fit=crop",
-    },
-    {
-      id: 2,
-      name: "Audi A4",
-      year: 2022,
-      price: "£31,995",
-      mileage: "8,500 mi",
-      fuel: "Petrol",
-      transmission: "Automatic",
-      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=500&fit=crop",
-    },
-    {
-      id: 3,
-      name: "Mercedes-Benz C-Class",
-      year: 2020,
-      price: "£26,750",
-      mileage: "22,000 mi",
-      fuel: "Diesel",
-      transmission: "Automatic",
-      image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=500&fit=crop",
-    },
-    {
-      id: 4,
-      name: "Volkswagen Golf",
-      year: 2021,
-      price: "£18,995",
-      mileage: "12,000 mi",
-      fuel: "Petrol",
-      transmission: "Manual",
-      image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=500&fit=crop",
-    },
-    {
-      id: 5,
-      name: "Tesla Model 3",
-      year: 2022,
-      price: "£39,995",
-      mileage: "5,000 mi",
-      fuel: "Electric",
-      transmission: "Automatic",
-      image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&h=500&fit=crop",
-    },
-    {
-      id: 6,
-      name: "Ford Mustang",
-      year: 2021,
-      price: "£42,500",
-      mileage: "10,000 mi",
-      fuel: "Petrol",
-      transmission: "Automatic",
-      image: "https://images.unsplash.com/photo-1584345604476-8ec5f1f69b06?w=800&h=500&fit=crop",
-    },
-  ];
+import vehicles from "@/lib/vehicles";
 
   return (
     <div className="min-h-screen py-12">
@@ -161,9 +101,11 @@ const Cars = () => {
                   <span>Fuel: {vehicle.fuel}</span>
                   <span>Trans: {vehicle.transmission}</span>
                 </div>
-                <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                  View Details
-                </Button>
+                <Link to={`/cars/${vehicle.id}`}>
+                  <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                    View Details
+                  </Button>
+                </Link>
               </div>
             </Card>
           ))}

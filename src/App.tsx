@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Cars from "./pages/Cars";
+import CarDetails from "./pages/CarDetails";
 import Vans from "./pages/Vans";
 import Finance from "./pages/Finance";
 import Sell from "./pages/Sell";
@@ -27,6 +28,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/cars" element={<Cars />} />
+              <Route path="/cars/:id" element={<CarDetails />} />
               <Route path="/vans" element={<Vans />} />
               <Route path="/finance" element={<Finance />} />
               <Route path="/sell" element={<Sell />} />
